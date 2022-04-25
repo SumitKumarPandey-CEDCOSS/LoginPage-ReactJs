@@ -1,8 +1,10 @@
 
 import React, { useState } from "react";
 import { Button, Form } from 'react-bootstrap';
-
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Dashboard from './dashboard.js';
+import Setting from './setting.js';
+import About from './about.js';
 
 function App() {
   // React States
@@ -59,7 +61,7 @@ function App() {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" name="pass" placeholder="Password" required />
         <div className="text-danger">{renderErrorMessage("pass")}</div>
-        
+
       </Form.Group>
       <Button variant="primary" type="submit">
         Submit
@@ -67,11 +69,32 @@ function App() {
     </Form>
   );
 
+  const routing = (
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/setting">Setting</Link>
+          </li>
+        </ul>
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/about" component={About} />
+        <Route path="/setting" component={Setting} />
+      </div>
+    </Router>
+  );
+
   return (
     <div className="app">
       <div className="login-form">
         <div className="title text-center">Login Form</div>
-        {isSubmitted ? <div>Login Successfully!! Welcome Sumit</div> : renderForm}
+        {isSubmitted ? routing : renderForm}
       </div>
     </div>
   );
