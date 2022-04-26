@@ -1,9 +1,9 @@
 import React from 'react';
 
-class Dashboard extends React.Component {
+class Home extends React.Component {
     
     render() {
-        return <h1>Dashboard Page</h1>
+        return <h1>Home Page</h1>
     }
 }
-export default Dashboard  
+export default Home  

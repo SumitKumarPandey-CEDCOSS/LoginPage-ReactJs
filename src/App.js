@@ -1,8 +1,8 @@
 
 import React, { useState } from "react";
 import { Button, Form } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Dashboard from './dashboard.js';
+import { Route, Routes, Link } from "react-router-dom";
+import Home from './dashboard.js';
 import Setting from './setting.js';
 import About from './about.js';
 
@@ -70,30 +70,26 @@ function App() {
   );
 
   const routing = (
-    <Router>
-      <div>
+    <div className="App">
+      <div className="list">
         <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/setting">Setting</Link>
-          </li>
+          <li><Link style={{ textDecoration: 'none', color: 'white' }} to="/">Home</Link></li>
+          <li><Link style={{ textDecoration: 'none', color: 'white' }} to="about">About</Link></li>
+          <li><Link style={{ textDecoration: 'none', color: 'white' }} to="setting">Setting</Link></li>
         </ul>
-        <Route exact path="/" component={Dashboard} />
-        <Route path="/about" component={About} />
-        <Route path="/setting" component={Setting} />
       </div>
-    </Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/setting" element={<Setting />} />
+      </Routes>
+    </div>
   );
 
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title text-center">Login Form</div>
+        <div className="title text-center"><h2>Login Form</h2></div>
         {isSubmitted ? routing : renderForm}
       </div>
     </div>
